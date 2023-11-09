@@ -4,7 +4,7 @@ from pathlib import Path
 
 jmake.setupenv()
 
-jmake.configure_file('revision.h.in', 'code/Common/revision.h', {
+jmake.configure_file(jmake.fullpath('revision.h.in')[0], jmake.fullpath('code/Common/revision.h')[0], {
     'GIT_COMMIT_HASH': '28ab0a09',
     'GIT_BRANCH': 'master',
     'ASSIMP_VERSION_MAJOR': 5,
@@ -15,8 +15,8 @@ jmake.configure_file('revision.h.in', 'code/Common/revision.h', {
     'LIBRARY_SUFFIX': '',
     'CMAKE_DEBUG_POSTFIX': '',
     })
-jmake.configure_file('contrib/zlib/zconf.h.in', 'contrib/zlib/zconf.h')
-jmake.configure_file('include/assimp/config.h.in', 'include/assimp/config.h')
+jmake.configure_file(jmake.fullpath('contrib/zlib/zconf.h.in')[0], jmake.fullpath('contrib/zlib/zconf.h')[0])
+jmake.configure_file(jmake.fullpath('include/assimp/config.h.in')[0], jmake.fullpath('include/assimp/config.h')[0])
 
 workspace = jmake.Workspace('assimp')
 
@@ -73,6 +73,8 @@ if host.os == jmake.Platform.WIN32:
     assimp.compile(['/W4', '/WX'])
 
 assimp.depend(assimp_contrib)
+
+assimp.export(includes=jmake.fullpath('include'))
 
 workspace.add(assimp_contrib)
 workspace.add(assimp)
