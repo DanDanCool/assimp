@@ -54,7 +54,8 @@ for dir in ['CApi', 'Common', 'Geometry', 'Material', 'Pbrt', 'PostProcessing']:
 
 filter = { 'C4D', 'IFC' }
 for asset in Path(jmake.fullpath('code/AssetLib')[0]).glob('*'):
-    if asset.stem in filter: continue
+    if asset.stem in filter:
+        assimp.define(f"ASSIMP_BUILD_NO_{asset.stem}_IMPORTER", 1)
     assimp_files.extend(jmake.glob(str(asset), ['**/*.h', '**/*.cpp', '**/*.inl']))
 
 rapidjson_files = jmake.glob('contrib/rapidjson/include', '**/*.h')
