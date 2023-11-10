@@ -4,19 +4,21 @@ from pathlib import Path
 
 jmake.setupenv()
 
-jmake.configure_file(jmake.fullpath('revision.h.in')[0], jmake.fullpath('code/Common/revision.h')[0], {
-    'GIT_COMMIT_HASH': '28ab0a09',
-    'GIT_BRANCH': 'master',
-    'ASSIMP_VERSION_MAJOR': 5,
-    'ASSIMP_VERSION_MINOR': 3,
-    'ASSIMP_VERSION_PATCH': 0,
-    'ASSIMP_PACKAGE_VERSION': 0,
-    'CMAKE_SHARED_LIBRARY_PREFIX': 'lib',
-    'LIBRARY_SUFFIX': '',
-    'CMAKE_DEBUG_POSTFIX': '',
-    })
-jmake.configure_file(jmake.fullpath('contrib/zlib/zconf.h.in')[0], jmake.fullpath('contrib/zlib/zconf.h')[0])
-jmake.configure_file(jmake.fullpath('include/assimp/config.h.in')[0], jmake.fullpath('include/assimp/config.h')[0])
+host = jmake.Host()
+if host.mode == 'generate':
+    jmake.configure_file(jmake.fullpath('revision.h.in')[0], jmake.fullpath('code/Common/revision.h')[0], {
+        'GIT_COMMIT_HASH': '28ab0a09',
+        'GIT_BRANCH': 'master',
+        'ASSIMP_VERSION_MAJOR': 5,
+        'ASSIMP_VERSION_MINOR': 3,
+        'ASSIMP_VERSION_PATCH': 0,
+        'ASSIMP_PACKAGE_VERSION': 0,
+        'CMAKE_SHARED_LIBRARY_PREFIX': 'lib',
+        'LIBRARY_SUFFIX': '',
+        'CMAKE_DEBUG_POSTFIX': '',
+        })
+    jmake.configure_file(jmake.fullpath('contrib/zlib/zconf.h.in')[0], jmake.fullpath('contrib/zlib/zconf.h')[0])
+    jmake.configure_file(jmake.fullpath('include/assimp/config.h.in')[0], jmake.fullpath('include/assimp/config.h')[0])
 
 workspace = jmake.Workspace('assimp')
 
@@ -64,7 +66,6 @@ assimp.include(jmake.fullpath(['include', 'code', '.']))
 assimp.include(jmake.fullpath(['contrib', 'contrib/pugixml/src', 'contrib/unzip', 'contrib/rapidjson/include',
                                'contrib/zlib', 'contrib/openddlparser/include']))
 
-host = jmake.Host()
 if host.os == jmake.Platform.WIN32:
     assimp_contrib.define('_CRT_SECURE_NO_DEPRECATE', 1)
     assimp_contrib.define('_CRT_NONSTDC_NO_DEPRECATE', 1)
