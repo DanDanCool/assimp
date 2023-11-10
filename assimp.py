@@ -53,7 +53,7 @@ for dir in ['CApi', 'Common', 'Geometry', 'Material', 'Pbrt', 'PostProcessing']:
     assimp_files.extend(jmake.glob(f'code/{dir}', ['**/*.h', '**/*.cpp', '**/*.inl']))
 
 filter = { 'C4D', 'IFC' }
-for asset in Path('code/AssetLib').glob('*'):
+for asset in Path(jmake.fullpath('code/AssetLib')[0]).glob('*'):
     if asset.stem in filter: continue
     assimp_files.extend(jmake.glob(str(asset), ['**/*.h', '**/*.cpp', '**/*.inl']))
 
