@@ -70,11 +70,11 @@ if host.os == jmake.Platform.WIN32:
     assimp_contrib.define('_CRT_SECURE_NO_DEPRECATE', 1)
     assimp_contrib.define('_CRT_NONSTDC_NO_DEPRECATE', 1)
     assimp_contrib.define('_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING', 1)
-    assimp_contrib.define('OPENDDLPARSER_BUILD', 1)
 
     assimp.define('_CRT_SECURE_NO_DEPRECATE', 1)
     assimp.define('RAPIDJSON_NOMEMBERITERATORCLASS', 1)
     assimp.define('RAPIDJSON_HAS_STDSTRING', 1)
+    assimp.define('OPENDDLPARSER_BUILD', 1)
 
 assimp.depend(assimp_contrib)
 
