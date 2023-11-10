@@ -74,7 +74,6 @@ if host.os == jmake.Platform.WIN32:
     assimp.define('_CRT_SECURE_NO_DEPRECATE', 1)
     assimp.define('RAPIDJSON_NOMEMBERITERATORCLASS', 1)
     assimp.define('RAPIDJSON_HAS_STDSTRING', 1)
-    assimp.compile(['/W4', '/WX'])
 
 assimp.depend(assimp_contrib)
 
