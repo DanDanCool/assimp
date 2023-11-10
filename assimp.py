@@ -21,6 +21,8 @@ jmake.configure_file(jmake.fullpath('include/assimp/config.h.in')[0], jmake.full
 workspace = jmake.Workspace('assimp')
 
 assimp_contrib = jmake.Project('assimp_contrib', jmake.Target.STATIC_LIBRARY)
+debug = assimp_contrib.filter('debug')
+debug['debug'] = True
 
 unzip_files = jmake.glob('contrib/unzip', ['*.h', '*.c'])
 poly2tri_files = jmake.glob('contrib/poly2tri/poly2tri', ['*.h', '*.cc'])
@@ -41,6 +43,8 @@ assimp_contrib.include(jmake.fullpath('include'))
 assimp_contrib.define('MINIZ_USE_UNALIGNED_LOADS_AND_STORES', 0)
 
 assimp = jmake.Project('assimp', jmake.Target.STATIC_LIBRARY)
+debug = assimp.filter('debug')
+debug['debug'] = True
 
 assimp_files = []
 for dir in ['CApi', 'Common', 'Geometry', 'Material', 'Pbrt', 'PostProcessing']:
