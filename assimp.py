@@ -29,17 +29,15 @@ debug['debug'] = True
 unzip_files = jmake.glob('contrib/unzip', ['*.h', '*.c'])
 poly2tri_files = jmake.glob('contrib/poly2tri/poly2tri', ['*.h', '*.cc'])
 clipper_files = jmake.glob('contrib/clipper', ['*.hpp', '*.cpp'])
-openddl_files = jmake.glob('contrib/openddlparser/code', '*.cpp') + jmake.glob('contrib/openddlparser/include', '*.h')
 open3dgc_files = jmake.glob('contrib/Open3DGC', ['*.h', '*.cpp', '*.inl'])
 zip_files = jmake.glob('contrib/zip/src', ['*.h', '*.c'])
 pugixml_files = jmake.glob('contrib/pugixml/src', ['*.hpp', '*.cpp'])
 stb_files = jmake.glob('contrib/stb', '*.h')
 zlib_files = jmake.glob('contrib/zlib', ['*.h', '*.c'])
 
-assimp_contrib.add(unzip_files + poly2tri_files + clipper_files + openddl_files + open3dgc_files +
+assimp_contrib.add(unzip_files + poly2tri_files + clipper_files + open3dgc_files +
                       zip_files + pugixml_files + stb_files + zlib_files)
 assimp_contrib.include(jmake.fullpath('contrib/zlib'))
-assimp_contrib.include(jmake.fullpath('contrib/openddlparser/include'))
 assimp_contrib.include(jmake.fullpath('include'))
 
 assimp_contrib.define('MINIZ_USE_UNALIGNED_LOADS_AND_STORES', 0)
@@ -60,8 +58,9 @@ for asset in Path(jmake.fullpath('code/AssetLib')[0]).glob('*'):
 
 rapidjson_files = jmake.glob('contrib/rapidjson/include', '**/*.h')
 utf8cpp_files = jmake.glob('contrib/utf8cpp/source', '**/*.h')
+openddl_files = jmake.glob('contrib/openddlparser/code', '*.cpp') + jmake.glob('contrib/openddlparser/include', '*.h')
 
-assimp.add(assimp_files + rapidjson_files + utf8cpp_files)
+assimp.add(assimp_files + rapidjson_files + utf8cpp_files + openddl_files)
 
 assimp.include(jmake.fullpath(['include', 'code', '.']))
 assimp.include(jmake.fullpath(['contrib', 'contrib/pugixml/src', 'contrib/unzip', 'contrib/rapidjson/include',
