@@ -36,8 +36,8 @@ pugixml_files = jmake.glob('contrib/pugixml/src', ['*.hpp', '*.cpp'])
 stb_files = jmake.glob('contrib/stb', '*.h')
 zlib_files = jmake.glob('contrib/zlib', ['*.h', '*.c'])
 
-assimp_contrib.add(jmake.fullpath(unzip_files + poly2tri_files + clipper_files + openddl_files + open3dgc_files +
-                                  zip_files + pugixml_files + stb_files + zlib_files))
+assimp_contrib.add(unzip_files + poly2tri_files + clipper_files + openddl_files + open3dgc_files +
+                      zip_files + pugixml_files + stb_files + zlib_files)
 assimp_contrib.include(jmake.fullpath('contrib/zlib'))
 assimp_contrib.include(jmake.fullpath('contrib/openddlparser/include'))
 assimp_contrib.include(jmake.fullpath('include'))
@@ -60,7 +60,7 @@ for asset in Path('code/AssetLib').glob('*'):
 rapidjson_files = jmake.glob('contrib/rapidjson/include', '**/*.h')
 utf8cpp_files = jmake.glob('contrib/utf8cpp/source', '**/*.h')
 
-assimp.add(jmake.fullpath(assimp_files + rapidjson_files + utf8cpp_files))
+assimp.add(assimp_files + rapidjson_files + utf8cpp_files)
 
 assimp.include(jmake.fullpath(['include', 'code', '.']))
 assimp.include(jmake.fullpath(['contrib', 'contrib/pugixml/src', 'contrib/unzip', 'contrib/rapidjson/include',
