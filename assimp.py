@@ -4,7 +4,7 @@ from pathlib import Path
 
 jmake.setupenv()
 
-host = jmake.Host()
+host = jmake.Env()
 if host.mode == 'generate':
     jmake.configure_file(jmake.fullpath('revision.h.in')[0], jmake.fullpath('code/Common/revision.h')[0], {
         'GIT_COMMIT_HASH': '28ab0a09',
